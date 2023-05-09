@@ -1,0 +1,62 @@
+#!/bin/bash
+
+while true; do
+    echo "1. Make a file."
+    echo "2. Display contents."
+    echo "3. Convert to uppercase."
+    echo "4. Search user."
+    echo "5. Delete user."
+    echo "6. Exit."
+    echo "Enter your choice (1-6): "
+    read choice
+
+    if [ "$choice" = "1" ]; then
+        echo "Enter the filename: "
+        read filename
+        touch "$filename"
+        echo "File created: $filename"
+    elif [ "$choice" = "2" ]; then
+        echo "Enter the filename: "
+        read filename
+        if [ -f "$filename" ]; then
+            cat "$filename"
+        else
+            echo "File does not exist."
+        fi
+    elif [ "$choice" = "3" ]; then
+        echo "Enter the filename: "
+        read filename
+        if [ -f "$filename" ]; then
+            mv "$filename" "$filename.tmp"
+            tr '[:lower:]' '[:upper:]' < "$filename.tmp" > "$filename"
+            rm "$filename.tmp"
+            echo "File converted to uppercase."
+        else
+            echo "File does not exist."
+        fi
+    elif [ "$choice" = "4" ]; then
+        echo "Enter the username to search: "
+        read username
+        if id "$username" >/dev/null 2>&1; then
+            echo "User $username exists."
+        else
+            echo "User $username does not exist."
+        fi
+    elif [ "$choice" = "5" ]; then
+        echo "Enter the username to delete: "
+        read username
+        if id "$username" >/dev/null 2>&1; then
+            userdel "$username"
+            echo "User $username deleted."
+        else
+            echo "User $username does not exist."
+        fi
+    elif [ "$choice" = "6" ]; then
+        echo "Exiting the program..."
+        exit 0
+    else
+        echo "Invalid choice. Please enter a number from 1 to 6."
+    fi
+
+    echo "---------------------------------------"
+done

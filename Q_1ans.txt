@@ -1,0 +1,72 @@
+a. To copy the player.txt file from the current directory to your home directory, you can use the cp command:
+
+bash
+Copy code
+cp player.txt ~/
+This command will copy the file player.txt to your home directory (~).
+
+b. To display the first three records from the player.txt file, you can use the head command with the -n option:
+
+bash
+Copy code
+head -n 3 player.txt
+This command will display the first three records from the file.
+
+c. To display the names of players who scored above 5000 runs and store them in a run.txt file, you can use the awk command:
+
+bash
+Copy code
+awk -F ', ' '$4 > 5000 {print $1}' player.txt > run.txt
+This command will search for records where the fourth field (runs) is greater than 5000, extract the first field (player's name), and store them in the run.txt file.
+
+d. To sort the players according to their debut date (month), you can use the sort command with the -k option:
+
+bash
+Copy code
+sort -t '-' -k 3M player.txt
+This command will sort the records based on the third field (debut date) in a month format, considering the hyphen (-) as the field separator.
+
+e. To display the records of players whose name contains "Sharma" or "Varma" using a single command, you can use the grep command with the -i (ignore case) and -E (extended regex) options:
+
+bash
+Copy code
+grep -i -E 'Sharma|Varma' player.txt
+This command will search for records that contain "Sharma" or "Varma" in the player's name, ignoring the case.
+
+f. To display the player details whose debut month is October, you can use the grep command with the -i (ignore case) and -w (match whole word) options:
+
+bash
+Copy code
+grep -i -w 'oct' player.txt
+This command will search for records where the debut month is "Oct," ignoring the case.
+
+g. To display the total runs scored by all players, you can use the awk command to sum the runs from the fourth field:
+
+bash
+Copy code
+awk -F ', ' '{sum+=$4} END {print sum}' player.txt
+This command will calculate the sum of the fourth field (runs) and display the total.
+
+h. To display the records of Ajay and Sourabh (searching names in a case-insensitive manner), you can use the grep command with the -i (ignore case) option:
+
+bash
+Copy code
+grep -i 'Ajay\|Sourabh' player.txt
+This command will search for records that contain "Ajay" or "Sourabh" in the player's name, ignoring the case.
+
+i. To display the player's names whose debut year is 1991, you can use the awk command to extract the debut year and compare it with "1991":
+
+bash
+Copy code
+awk -F ', ' '$3 ~ /1991/ {print $1}' player.txt
+This command will search for records where the third field (debut year) matches "1991" and print the first field (player's name).
+
+j. To display only the names of players whose names start with "A" or "S," you can use the awk command with a conditional statement:
+
+bash
+Copy code
+awk -F ', ' '$1 ~ /^A|^
+
+
+
+
